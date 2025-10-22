@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareRing - AI 헬스케어 소셜 플랫폼</title>
+    <!-- Google Fonts: Inter (영어), Noto Sans KR (한글) --><link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS (via CDN) --><script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Noto Sans KR 폰트를 기본으로, Inter 폰트를 영어에 적용 */
+        body {
+            font-family: 'Noto Sans KR', 'Inter', sans-serif;
+        }
+        /* Tailwind CSS v3+ JIT 엔진을 위한 커스텀 색상 정의 */
+        .bg-gradient-header {
+            background: linear-gradient(120deg, #f0f9ff 0%, #e0f2fe 100%);
+        }
+        
+        /* 스크롤 다운 애니메이션 */
+        .scroll-down-arrow {
+            position: absolute;
+            bottom: 2rem; /* 히어로 섹션 하단에서 2rem */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2rem;
+            height: 2rem;
+            border-left: 3px solid #3B82F6; /* primary-DEFAULT color */
+            border-bottom: 3px solid #3B82F6;
+            transform: rotate(-45deg);
+            opacity: 0;
+            animation: bounce 2s infinite;
+        }
+
+        /* 스크롤 시 페이드인 애니메이션 */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            transition-delay: 0s; /* 기본 딜레이 */
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes bounce {
+            0% {
+                transform: rotate(-45deg) translate(0, 0);
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: rotate(-45deg) translate(-15px, -15px);
+                opacity: 0;
+            }
+        }
+    </style>
+    <script>
+        // Tailwind CSS 커스텀 설정
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            light: '#dbeafe', // blue-100
+                            DEFAULT: '#3b82f6', // blue-500
+                            dark: '#1d4ed8',  // blue-700
+                        },
+                    },
+                    fontFamily: {
+                        sans: ['Noto Sans KR', 'Inter', 'sans-serif'],
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                },
+            },
+        };
+    </script>
+</head>
+<body class="bg-white text-gray-800 antialiased">
+
+    <!-- Header --><header class="bg-gradient-header/80 backdrop-blur-sm fixed top-0 left-0 right-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="flex items-center space-x-2">
+                <!-- 로고 이미지로 대체: mylogo.png의 URL을 여기에 넣으세요 --><img src="./mylogo.png" alt="CareRing Logo" class="w-10 h-10 rounded-full object-cover">
+                <span class="text-2xl font-extrabold text-gray-900 font-inter">CareRing</span>
+            </a>
+            <div class="hidden md:block">
+                <a href="#features" class="text-gray-700 hover:text-primary-dark font-medium px-4">주요 기능</a>
+                <a href="#preview" class="text-gray-700 hover:text-primary-dark font-medium px-4">앱 미리보기</a>
+                <a href="#tech" class="text-gray-700 hover:text-primary-dark font-medium px-4">적용 기술</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content --><main class="overflow-x-hidden">
+        <!-- Hero Section --><section class="bg-gradient-header pt-20 pb-16 md:pt-32 md:pb-24 relative"> <!-- relative 추가 --><div class="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+                <!-- 텍스트 영역 --><div class="text-center md:text-left">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 mb-6 leading-tight">
+                        AI로 기록하고<br>
+                        모두와 공유하는 건강한 습관
+                    </h1>
+                    <p class="text-lg md:text-xl text-gray-700 mb-10 max-w-lg mx-auto md:mx-0">
+                        CareRing은 AI 음식/알약 인식부터 건강 챌린지를 공유하는 소셜 피드까지,
+                        당신의 건강한 삶을 기록하고 응원하는 헬스케어 플랫폼입니다.
+                    </p>
+                    <div class="flex justify-center md:justify-start space-x-4">
+                        <!-- 버튼 스타일 수정 --><a href="#" class="bg-primary text-white font-bold py-3 px-6 rounded-lg shadow-lg hover:bg-primary-dark transition duration-300">
+                            App Store
+                        </a>
+                        <a href="#" class="bg-gray-900 text-white font-bold py-3 px-6 rounded-lg shadow-lg hover:bg-gray-700 transition duration-300">
+                            Google Play
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 이미지 영역 (다이나믹 효과 수정) --><div class="relative mt-12 md:mt-0">
+                    <!-- [사용자 작업] 'src'를 업로드한 메인 스크린샷 URL로 교체하세요 --><!-- 예: simulator_screenshot...DEE55B.png (소셜 피드 화면) --><!-- 다이나믹 효과 수정: 기본적으로 rotate-3, scale-105 적용 / hover시 rotate-0, scale-100으로 변경 --><div class="hero-image-container transform md:rotate-3 md:scale-105 hover:rotate-0 hover:scale-100 transition duration-500 ease-in-out">
+                        <img src="./1..png" 
+                             alt="CareRing App Social Feed" 
+                             class="rounded-3xl shadow-2xl mx-auto"
+                             onerror="this.src='https://placehold.co/375x812/CCCCCC/999999?text=Image+Not+Found'">
+                    </div>
+                </div>
+            </div>
+            <!-- 스크롤 다운 화살표 --><div class="scroll-down-arrow hidden md:block"></div>
+        </section>
+
+        <!-- Features Section --><section id="features" class="py-20 md:py-32 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">CareRing, 무엇이 다른가요?</h2>
+                    <p class="text-lg text-gray-600">AI와 소셜이 결합된 특별한 헬스케어</p>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-10">
+                    <!-- Feature 1: AI 자동 기록 --><div class="bg-gray-50 p-8 rounded-2xl shadow-lg hover:shadow-xl transition duration-300 fade-in-section">
+                        <div class="w-16 h-16 bg-primary-light text-primary-dark rounded-full flex items-center justify-center mb-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">AI 기반 자동 기록</h3>
+                        <p class="text-gray-600">음식과 알약을 카메라로 비추기만 하면 AI가 영양 정보와 약품 성분을 자동으로 분석하고 기록합니다.</p>
+                    </div>
+                    
+                    <!-- Feature 2: 소셜 피드 --><div class="bg-gray-50 p-8 rounded-2xl shadow-lg hover:shadow-xl transition duration-300 fade-in-section" style="transition-delay: 100ms">
+                        <div class="w-16 h-16 bg-primary-light text-primary-dark rounded-full flex items-center justify-center mb-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-2.121M8 20v-2a3 3 0 015.356-2.121M3 20v-2a3 3 0 015.356-2.121M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a4 4 0 110-8 4 4 0 010 8z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">건강 습관 공유 피드</h3>
+                        <p class="text-gray-600">자신의 식단과 운동을 공유하고, 다른 사용자들과 소통하며 건강한 동기부여를 주고받습니다.</p>
+                    </div>
+                    
+                    <!-- Feature 3: 건강 대시보드 --><div class="bg-gray-50 p-8 rounded-2xl shadow-lg hover:shadow-xl transition duration-300 fade-in-section" style="transition-delay: 200ms">
+                        <div class="w-16 h-16 bg-primary-light text-primary-dark rounded-full flex items-center justify-center mb-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">맞춤형 건강 캘린더</h3>
+                        <p class="text-gray-600">복용 약, 운동 일정, 칼로리 섭취 현황을 캘린더와 대시보드에서 한눈에 확인하고 관리합니다.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- App Preview Section (갤러리 레이아웃 수정) --><section id="preview" class="py-20 md:py-32 bg-gray-100">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">앱 미리보기</h2>
+                    <p class="text-lg text-gray-600">CareRing의 다양한 화면들을 만나보세요.</p>
+                </div>
+                
+                <!-- 스크린샷 갤러리 (6개 - Staggered 수정) --><div class="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
+                    <!-- [사용자 작업] 'src'를 업로드한 스크린샷 URL로 교체하세요 --><!-- 알약 검색: ...DF5BE3.png --><img src="./2.png" 
+                         alt="알약 검색 화면" 
+                         class="w-full rounded-3xl shadow-lg fade-in-section"
+                         onerror="this.src='https://placehold.co/300x600/CCCCCC/999999?text=Image+Not+Found'">
+                    
+                    <!-- 건강 대시보드: ...C35400.png (살짝 내림) --><img src="./3.png" 
+                         alt="건강 대시보드 화면" 
+                         class="w-full rounded-3xl shadow-lg fade-in-section md:mt-16" style="transition-delay: 100ms"
+                         onerror="this.src='https://placehold.co/300x600/CCCCCC/999999?text=Image+Not+Found'">
+                         
+                    <!-- 알약 정보: ...CF5F4E.png --><img src="4.png" 
+                         alt="알약 정보 화면" 
+                         class="w-full rounded-3xl shadow-lg fade-in-section" style="transition-delay: 200ms"
+                         onerror="this.src='https://placehold.co/300x600/CCCCCC/999999?text=Image+Not+Found'">
+
+                    <!-- 게시물 작성: ...BDDED.png (살짝 내림) --><img src="7.png" 
+                         alt="게시물 작성 화면" 
+                         class="w-full rounded-3xl shadow-lg fade-in-section md:mt-16" style="transition-delay: 300ms"
+                         onerror="this.src='https://placehold.co/300x600/CCCCCC/999999?text=Image+Not+Found'">
+                         
+                    <!-- 인트로: ...F3A289.png --><img src="5.png" 
+                         alt="인트로 화면" 
+                         class="w-full rounded-3xl shadow-lg fade-in-section" style="transition-delay: 400ms"
+                         onerror="this.src='https://placehold.co/300x600/CCCCCC/999999?text=Image+Not+Found'">
+
+                    <!-- 로그인/환영: ...A0DBCF27.png (살짝 내림) --><img src="6.png" 
+                         alt="환영 화면" 
+                         class="w-full rounded-3xl shadow-lg fade-in-section md:mt-16" style="transition-delay: 500ms"
+                         onerror="this.src='https://placehold.co/300x600/CCCCCC/999999?text=Image+Not+Found'">
+                </div>
+            </div>
+        </section>
+
+        <!-- Tech Stack Section --><section id="tech" class="py-20 md:py-32 bg-white">
+            <div class="container mx-auto px-6 max-w-4xl">
+                 <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">적용 기술</h2>
+                    <p class="text-lg text-gray-600">안정적이고 확장 가능한 서비스를 위해 사용된 기술입니다.</p>
+                </div>
+                <div class="bg-gray-800 text-gray-300 p-8 rounded-2xl shadow-xl font-mono text-sm space-y-4 fade-in-section">
+                    <p><span class="text-primary-light">Frontend:</span> React Native</p>
+                    <p><span class="text-primary-light">Backend:</span> Go, Gin (Web Framework), GORM (ORM), Redis (Cache & Pub/Sub)</p>
+                    <p><span class="text-primary-light">AI/ML:</span> Python, FastAPI, PyTorch, Hugging Face Transformers</p>
+                    <p><span class="text-primary-light">Database:</span> MySQL</p>
+                    <p><span class="text-primary-light">Architecture:</span> Microservice Architecture (MSA)</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer --><footer class="bg-gray-900 text-gray-400 py-16">
+        <div class="container mx-auto px-6 text-center">
+            <a href="#" class="flex items-center justify-center space-x-2 mb-4">
+                <!-- 푸터 로고 이미지로 대체: mylogo.png의 URL을 여기에 넣으세요 --><img src="mylogo.png" alt="CareRing Logo" class="w-8 h-8 rounded-full object-cover">
+                <span class="text-2xl font-extrabold text-white font-inter">CareRing</span>
+            </a>
+            <p class="text-sm">&copy; 2024 CareRing. All rights reserved.</p>
+            <p class="text-sm mt-2">AI 헬스케어 소셜 플랫폼</p>
+        </div>
+    </footer>
+
+    <!-- 스크롤 애니메이션 스크립트 --><script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('.fade-in-section');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target); // 한번 보이면 계속 보이도록
+                    }
+                });
+            }, {
+                rootMargin: '0px',
+                threshold: 0.1 // 10% 보였을 때 실행
+            });
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+
+</body>
+</html>
+
